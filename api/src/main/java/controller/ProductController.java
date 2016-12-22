@@ -2,21 +2,22 @@ package controller;
 
 import entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import service.ProductService;
 
-/**
- * Created by Денис on 17.12.2016.
- */
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
+
 @RestController
 public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping(path = "product/get/{id}")
-    public Product getProductById(@PathVariable("id") int id) {
-        return productService.getProductById(id);
+    //   @GetMapping(path = "product/get/{id}")
+    @RequestMapping(value = "/getProductById", method = GET)
+    public Product getProductById(@RequestParam(name = "id") final int productId) {
+         return productService.getProductById(productId);
     }
 }
