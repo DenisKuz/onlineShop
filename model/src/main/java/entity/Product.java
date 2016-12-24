@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 
-/**
- * Created by Денис on 17.12.2016.
- */
 @Entity
 @Table(name = "product")
 public class Product {
@@ -23,12 +20,20 @@ public class Product {
     @JsonProperty("product_description")
     private String productDescription;
 
+    @Column(name = "category_id")
+    @JsonProperty("category_id")
+    private int categoryId;
+
+    @Column(name = "product_producer_id")
+    @JsonProperty("product_producer_id")
+    private int productProducerId;
+
     @Column(name = "image_patch")
     @JsonProperty("image_patch")
     private String imagePatch;
 
-    @Column(name = "product_quality")
-    @JsonProperty("product_quality")
+    @Column(name = "product_quantity")
+    @JsonProperty("product_quantity")
     private int productQuality;
 
     @Column(name = "product_price")

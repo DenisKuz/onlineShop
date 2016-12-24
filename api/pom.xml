@@ -26,4 +26,8 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <finalName>online-shop</finalName>
+    </build>
+
 </project>

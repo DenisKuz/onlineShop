@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <context:property-placeholder location="classpath*:model.properties"/>
     <!-- please don't change this configuration! -->
     <bean id="mainDataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
-        <property name="driverClass" value="org.postgresql.Driver" />
-        <property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/online_shop" />
-        <property name="username" value="postgres"/>
-        <property name="password" value="admin"/>
+        <property name="driverClass" value="${datasource.driver}" />
+        <property name="jdbcUrl" value="${datasource.url}" />
+        <property name="username" value="${datasource.username}"/>
+        <property name="password" value="${datasource.password}"/>
         <property name="idleConnectionTestPeriodInMinutes" value="60"/>
         <property name="idleMaxAgeInMinutes" value="240"/>
         <property name="maxConnectionsPerPartition" value="30"/>
@@ -22,23 +24,21 @@
     <jpa:repositories base-package="repo" />
 
     <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
-        <property name="entityManagerFactory"
-                  ref="entityManagerFactory" />
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
         <property name="jpaDialect">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
         </property>
     </bean>
 
-    <bean id="entityManagerFactory"
-          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="mainDataSource" />
         <property name="packagesToScan" value="entity"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="generateDdl" value="true" />
                 <property name="showSql" value="false"/>
-                <property name="databasePlatform" value="org.hibernate.dialect.PostgreSQL82Dialect"/>
-                <property name="database" value="POSTGRESQL"/>
+                <property name="databasePlatform" value="${database.dialect}"/>
+                <property name="database" value="${database.name}"/>
             </bean>
         </property>
         <property name="jpaProperties">
