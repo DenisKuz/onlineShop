@@ -3,13 +3,15 @@ package entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "consumer")
 public class Consumer {
 
     @Id
+    // @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "consumer_id_seq")
+    // @SequenceGenerator(name = "consumer_id_seq", sequenceName = "consumer_id_seq", allocationSize = 1)
     private int id;
 
     @Column(name = "consumer_login")
@@ -32,7 +34,7 @@ public class Consumer {
     @JsonProperty("phone_number")
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "consumer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "consumer", fetch = FetchType.EAGER, orphanRemoval = true)
     @JsonProperty("orders")
-    private Set<Order> orders;
+    private List<Order> orders;
 }
