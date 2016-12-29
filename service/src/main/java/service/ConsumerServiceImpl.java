@@ -17,4 +17,8 @@ public class ConsumerServiceImpl implements ConsumerService {
     public Consumer getConsumerById(final int id) {
         return consumerRepo.findOne(id);
     }
+
+    public Consumer getConsumerByLogin(final String login) {
+        return consumerRepo.getConsumerByConsumerLogin(login);
+    }
 }

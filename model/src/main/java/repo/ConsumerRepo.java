@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ConsumerRepo extends JpaRepository<Consumer, Integer> {
+    Consumer getConsumerByConsumerLogin(final String login);
 }

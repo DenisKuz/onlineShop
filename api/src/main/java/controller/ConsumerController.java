@@ -18,8 +18,13 @@ public class ConsumerController {
         this.consumerService = consumerService;
     }
 
-    @GetMapping(path = "/get/{id}")
+    @GetMapping(path = "/getById/{id}")
     public Consumer getConsumerById(@PathVariable("id") final int consumerId) {
         return consumerService.getConsumerById(consumerId);
+    }
+
+    @GetMapping(path = "/getByLogin/{login}")
+    public Consumer getConsumerByLogin(@PathVariable("login") final String login) {
+        return consumerService.getConsumerByLogin(login);
     }
 }

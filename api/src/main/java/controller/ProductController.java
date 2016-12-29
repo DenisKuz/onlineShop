@@ -18,7 +18,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping(path = "/get/{id}")
+    @GetMapping(path = "/getById/{id}")
     public Product getProductById(@PathVariable("id") final int productId) {
          return productService.getProductById(productId);
     }
