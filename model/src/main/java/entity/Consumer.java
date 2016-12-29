@@ -34,7 +34,7 @@ public class Consumer {
     @JsonProperty("phone_number")
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "consumer", fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "consumer", fetch = FetchType.EAGER)
     @JsonProperty("orders")
     private List<Order> orders;
 }

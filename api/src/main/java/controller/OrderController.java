@@ -11,8 +11,12 @@ import service.OrderService;
 @RestController
 @RequestMapping("/order")
 public class OrderController {
+    private final OrderService orderService;
+
     @Autowired
-    private OrderService orderService;
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     @GetMapping(path = "/get/{id}")
     public Order getOrderById(@PathVariable("id") final int orderId) {

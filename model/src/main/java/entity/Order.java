@@ -22,18 +22,19 @@ public class Order {
     @JsonProperty("order_date")
     private Date consumeDate;
 
-    @Column(name = "payment_method_id")
-    @JsonProperty("payment_method_id")
-    private int paymentMethodId;
+    @ManyToOne
+    @JoinColumn(name = "payment_method_id")
+    @JsonProperty("payment_method")
+    private PaymentMethod paymentMethod;
 
     @ManyToOne
     @JoinColumn(name = "consumer_id")
-    //@JsonProperty("consumer")
     private Consumer consumer;
 
-    @Column(name = "status_id")
-    @JsonProperty("status_id")
-    private int statusId;
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    @JsonProperty("status")
+    private OrderStatus status;
 
     @Column(name = "order_deadline")
     @JsonProperty("order_deadline")
