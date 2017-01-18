@@ -8,12 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="payment_method")
+@Table(name = "payment_method")
 public class PaymentMethod {
     @Id
     private int id;
 
-    @Column(name="payment_method_name")
+    @Column(name = "payment_method_name")
     @JsonProperty("name")
     private String name;
 }
