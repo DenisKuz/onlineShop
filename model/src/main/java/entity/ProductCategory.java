@@ -10,6 +10,7 @@ import java.util.List;
 public class ProductCategory {
 
     @Id
+    @JsonProperty("id")
     private int id;
 
     @Column(name = "category_name")
@@ -17,7 +18,7 @@ public class ProductCategory {
     private String categoryName;
 
     @OneToMany(mappedBy = "categoryId", fetch = FetchType.EAGER)
-    @JsonProperty("subCategoryList")
+    @JsonProperty("sub_category_list")
     private List<ProductCategory> subCategoryList;
 
     @ManyToOne

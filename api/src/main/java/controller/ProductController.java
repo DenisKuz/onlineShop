@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import service.ProductService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -22,4 +24,15 @@ public class ProductController {
     public Product getProductById(@PathVariable("id") final int productId) {
          return productService.getProductById(productId);
     }
+
+    @GetMapping(path = "/getByProductProducerId/{producerId}")
+    public List<Product> getProductByProducerId(@PathVariable("producerId") final int producerId) {
+        return productService.getProductByProducerId(producerId);
+    }
+
+    @GetMapping(path = "/getByProductCategoryId/{сategoryId}")
+    public List<Product> getProductByCategoryId(@PathVariable("сategoryId") final int сategoryId) {
+        return productService.getProductByCategoryId(сategoryId);
+    }
+
 }

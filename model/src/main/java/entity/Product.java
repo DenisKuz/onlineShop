@@ -8,8 +8,8 @@ import javax.persistence.*;
 @Table(name = "product")
 public class Product {
     @Id
-   // @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_id_seq")
-   // @SequenceGenerator(name = "product_id_seq", sequenceName = "product_id_seq", allocationSize = 1)
+    // @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_id_seq")
+    // @SequenceGenerator(name = "product_id_seq", sequenceName = "product_id_seq", allocationSize = 1)
     private int id;
 
     @Column(name = "product_name")
@@ -20,13 +20,14 @@ public class Product {
     @JsonProperty("product_description")
     private String productDescription;
 
-    @Column(name = "category_id")
-    @JsonProperty("category_id")
-    private int categoryId;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private ProductCategory productCategory;
 
-    @Column(name = "product_producer_id")
-    @JsonProperty("product_producer_id")
-    private int productProducerId;
+    @ManyToOne
+    @JoinColumn(name = "product_producer_id")
+    @JsonProperty("product_producer")
+    private ProductProducer productProducer;
 
     @Column(name = "image_patch")
     @JsonProperty("image_patch")
